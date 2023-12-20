@@ -22,7 +22,7 @@ export class AppComponent implements OnInit{
     initFlowbite(); // Initialise Flowbite CSS library for Tailwind CSS
 
     // Subscribe to data
-    this.subscription = this.floodApiService.getFloodWarningDetails().subscribe({
+    this.subscription = this.floodApiService.getFloodWarningToday().subscribe({
       next: (data) => {
         this.floodWarningData = data; // Save to property
         console.log(data);

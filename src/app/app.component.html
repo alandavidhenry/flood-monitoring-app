@@ -1,12 +1,13 @@
-<h1>Flood App</h1>
+<h1 class="text-5xl font-extrabold dark:text-white">Flood App</h1>
 
-<h2>Flood Warnings</h2>
+<h2 class="text-4xl font-bold dark:text-white">Flood Warnings</h2>
 
 <table class="GeneratedTable">
   <thead>
     <tr>
       <th>Location</th>
-      <th>Severity</th>
+      <th>County</th>
+      <th>Severity Level</th>
       <th>Time</th>
     </tr>
   </thead>
@@ -14,11 +15,11 @@
     <ng-container *ngIf="floodWarningData">
       <tr *ngFor="let item of floodWarningData.items">
         <td>{{ item.description }}</td>
-        <td>{{ item.severity }}</td>
-        <td>{{ item.timeRaised }}</td>
+        <td>{{ item.floodArea.county.split(',')[0].trim() }}</td>
+        <td>{{ item.severityLevel }}</td>
+        <td>{{ item.timeRaised | date : 'shortTime'}}</td>
       </tr>
     </ng-container>
-    
   </tbody>
 </table>
 

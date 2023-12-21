@@ -11,6 +11,9 @@ export class FloodApiService {
   // API URL
   private url: string = "http://environment.data.gov.uk/flood-monitoring";
 
+  // Rivers search term
+  private searchRivers: string = '';
+
   constructor(private http: HttpClient) { }
 
   getFloodWarningToday() {
@@ -37,5 +40,9 @@ export class FloodApiService {
         return response;
       })
     );
+  }
+
+  getStationsSearchRiverName() {
+    return this.http.get(this.url + '/id/stations?search=' + this.searchRivers)
   }
 }

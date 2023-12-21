@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FloodWarningsComponent } from './flood-warnings/flood-warnings.component';
+import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    FloodWarningsComponent
+    FloodWarningsComponent,
+    ThemeSwitcherComponent
   ],
   imports: [
     BrowserModule,

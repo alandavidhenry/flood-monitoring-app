@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
   title = 'flood-monitoring-app';
 
   // Properties
-  floodWarningData: any;
+  floodWarningData: any = {};
   private subscription!: Subscription;
 
   // Inject service into constructor
@@ -35,5 +35,18 @@ export class AppComponent implements OnInit{
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe(); // Unsubscribe to prevent potential memory leaks
+  }
+
+  sortByLocation(): void {
+    console.log('sort by location');
+  }
+  sortByCounty(): void {
+    console.log('sort by county');
+  }
+  sortBySeverity(): void {
+    console.log('sort by severity');
+  }
+  sortByTime(): void {
+    console.log('sort by time');
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Item } from '../models/flood';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,10 @@ export class FloodApiService {
   // API URL
   private url: string = "http://environment.data.gov.uk/flood-monitoring";
 
-  // Rivers search term
-  private searchRivers: string = '';
-
   constructor(private http: HttpClient) { }
 
   getFloodWarningToday() {
-    return this.http.get(this.url + '/id/floods').pipe(
+    return this.http.get(`${this.url}/id/floods`).pipe(
       map((response: any) => {
         response.items.forEach((item: Item) => {
           item.timeRaised = new Date(item.timeRaised);
@@ -42,7 +40,7 @@ export class FloodApiService {
     );
   }
 
-  getStationsSearchRiverName() {
-    return this.http.get(this.url + '/id/stations?search=' + this.searchRivers)
+  getStationsSearchRiverName(searchTerm: string): Observable<any> {
+    return this.http.get(`${this.url}/id/stations?search=${searchTerm}`);
   }
 }

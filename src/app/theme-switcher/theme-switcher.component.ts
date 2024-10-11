@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-theme-switcher',
@@ -6,35 +6,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./theme-switcher.component.scss']
 })
 export class ThemeSwitcherComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.setThemeIcon();
+    this.setThemeIcon()
   }
 
   toggleTheme() {
-    const currentTheme = localStorage.getItem('color-theme');
+    const currentTheme = localStorage.getItem('color-theme')
     if (currentTheme === 'dark') {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('color-theme', 'light');
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('color-theme', 'light')
     } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('color-theme', 'dark');
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('color-theme', 'dark')
     }
-    this.setThemeIcon();
+    this.setThemeIcon()
   }
 
   setThemeIcon() {
-    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const themeToggleDarkIcon = document.getElementById(
+      'theme-toggle-dark-icon'
+    )
+    const themeToggleLightIcon = document.getElementById(
+      'theme-toggle-light-icon'
+    )
 
     if (localStorage.getItem('color-theme') === 'dark') {
-      themeToggleLightIcon?.classList.remove('hidden');
-      themeToggleDarkIcon?.classList.add('hidden');
+      themeToggleLightIcon?.classList.remove('hidden')
+      themeToggleDarkIcon?.classList.add('hidden')
     } else {
-      themeToggleLightIcon?.classList.add('hidden');
-      themeToggleDarkIcon?.classList.remove('hidden');
+      themeToggleLightIcon?.classList.add('hidden')
+      themeToggleDarkIcon?.classList.remove('hidden')
     }
   }
 }

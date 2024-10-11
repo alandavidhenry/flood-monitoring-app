@@ -1,0 +1,8 @@
+./src/assets/
+
+.angular/
+.vscode/
+node_modules/
+dist/
+
+eslint.config.mjs

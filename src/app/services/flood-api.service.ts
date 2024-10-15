@@ -7,7 +7,7 @@ import { Item } from '../models/flood'
   providedIn: 'root'
 })
 export class FloodApiService {
-  private url: string = 'http://environment.data.gov.uk/flood-monitoring'
+  private url: string = 'https://environment.data.gov.uk/flood-monitoring'
 
   constructor(private http: HttpClient) {}
 

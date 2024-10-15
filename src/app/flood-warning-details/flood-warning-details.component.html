@@ -11,7 +11,7 @@
     *ngIf="floodWarning"
     class="bg-white dark:bg-gray-800 shadow-md rounded sm:rounded-lg p-8 mb-4"
   >
-    <div *ngIf="floodWarning" class="mb-4">
+    <div *ngIf="floodWarning" class="mb-4 text-gray-800 dark:text-white">
       <p class="mb-2"><strong>Description:</strong> {{ floodWarning.description || 'N/A' }}</p>
       <p class="mb-2"><strong>County:</strong> {{ floodWarning.floodArea.county || 'N/A' }}</p>
       <p class="mb-2"><strong>Severity level:</strong> {{ floodWarning.severityLevel || 'N/A' }}</p>
@@ -27,4 +27,6 @@
   <div *ngIf="!floodWarning" class="text-center">
     <p class="text-xl dark:text-white">Loading flood warning details...</p>
   </div>
+
+  <div id="map" style="height: 400px; width: 100%;" class="mt-4"></div>
 </div>

@@ -7,7 +7,7 @@
   Click on a table row to view more details.
 </p>
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div class="relative overflow-x-auto shadow-md rounded sm:rounded-lg">
   <table
     class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table-fixed"
   >
@@ -99,33 +99,28 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngIf="floodWarningData">
-        <tr
-          *ngFor="let item of floodWarningData"
-          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
-        >
-          <th
-            scope="row"
-            class="px-6 py-4 font-medium text-gray-900 dark:text-white"
-          >
-            {{ item.description }}
-          </th>
-          <td class="px-6 py-4">
-            {{ item.floodArea.county.split(',')[0].trim() }}
-          </td>
-          <td class="px-6 py-4">
-            {{ item.severityLevel }}
-          </td>
-          <td class="px-6 py-4">
-            {{ item.timeRaised | date: 'shortTime' }}
-          </td>
-        </tr>
-      </ng-container>
-      <ng-container *ngIf="floodWarningData.length === 0">
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <td class="px-6 py-4" colspan="4">Loading data...</td>
-        </tr>
-      </ng-container>
+      <tr
+        *ngFor="let item of floodWarningData"
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
+        (click)="onRowClick(item)"
+      >
+        <td class="px-6 py-4 font-medium text-gray-800 dark:text-white">
+          {{ item.description }}
+        </td>
+        <td class="px-6 py-4">
+          {{ item.floodArea.county.split(',')[0].trim() }}
+        </td>
+        <td class="px-6 py-4">
+          {{ item.severityLevel }}
+        </td>
+        <td class="px-6 py-4">
+          {{ item.timeRaised | date: 'shortTime' }}
+        </td>
+      </tr>
     </tbody>
   </table>
+</div>
+
+<div *ngIf="floodWarningData.length === 0" class="text-center">
+  <p class="text-xl dark:text-white">Loading data...</p>
 </div>

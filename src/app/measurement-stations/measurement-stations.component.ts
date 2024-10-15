@@ -7,10 +7,8 @@ import { FloodApiService } from '../services/flood-api.service'
   styleUrls: ['./measurement-stations.component.scss']
 })
 export class MeasurementStationsComponent {
-  // Rivers search term
   searchRivers: string = ''
 
-  // To store returned data
   stations: any[] = []
 
   constructor(private stationService: FloodApiService) {}
@@ -19,7 +17,7 @@ export class MeasurementStationsComponent {
     this.stationService
       .getStationsSearchRiverName(this.searchRivers)
       .subscribe((data) => {
-        this.stations = Object.values(data) // Assuming the API returns an array of stations
+        this.stations = Object.values(data)
         console.log('Data:', data)
         console.log('Stations:', this.stations)
       })

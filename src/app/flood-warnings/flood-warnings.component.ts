@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { FloodApiService } from '../services/flood-api.service'
 import { Item } from '../models/flood'
@@ -14,13 +15,15 @@ export class FloodWarningsComponent implements OnInit {
   sortColumn: string = ''
   sortDirection: 'asc' | 'desc' = 'asc'
 
-  constructor(private floodApiService: FloodApiService) {}
+  constructor(
+    private floodApiService: FloodApiService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.subscription = this.floodApiService.getFloodWarningToday().subscribe({
       next: (data: any) => {
         this.floodWarningData = data.items
-        console.log(data)
       },
       error: (error) => {
         console.error(error)
@@ -79,5 +82,10 @@ export class FloodWarningsComponent implements OnInit {
 
   sortByTime(): void {
     this.sortData('time')
+  }
+
+  onRowClick(item: Item): void {
+    const url = `/flood-warning-details/${item.floodAreaID}`
+    this.router.navigateByUrl(url)
   }
 }

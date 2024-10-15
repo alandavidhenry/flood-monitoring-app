@@ -9,8 +9,8 @@ import { HeaderComponent } from './header/header.component'
 import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component'
 import { HomeComponent } from './home/home.component'
 import { FloodWarningsComponent } from './flood-warnings/flood-warnings.component'
-import { FloodHistoryComponent } from './flood-history/flood-history.component'
 import { FloodWarningDetailsComponent } from './flood-warning-details/flood-warning-details.component'
+import { FloodHistoryComponent } from './flood-history/flood-history.component'
 import { MeasurementStationsComponent } from './measurement-stations/measurement-stations.component'
 import { AboutThisSiteComponent } from './about-this-site/about-this-site.component'
 
@@ -32,8 +32,15 @@ import { AboutThisSiteComponent } from './about-this-site/about-this-site.compon
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'flood-warnings', component: FloodWarningsComponent },
+      {
+        path: 'flood-warning-details/:id',
+        component: FloodWarningDetailsComponent
+      },
       { path: 'flood-history', component: FloodHistoryComponent },
-      { path: 'measurement-stations', component: MeasurementStationsComponent },
+      {
+        path: 'measurement-stations',
+        component: MeasurementStationsComponent
+      },
       { path: 'about-this-site', component: AboutThisSiteComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }

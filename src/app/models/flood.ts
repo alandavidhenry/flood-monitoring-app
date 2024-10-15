@@ -2,20 +2,19 @@ export interface Item {
   '@id': string
   description: string
   eaAreaName: string
-  eaRegionName: string
   floodArea: {
     '@id': string
     county: string
-    notation: string
-    polygon: string
+    description: string
+    eaAreaName: string
+    lat: string
+    long: string
     riverOrSea: string
   }
   floodAreaID: string
-  isTidal: boolean
   message: string
   severity: string
   severityLevel: number
-  timeMessageChanged: Date
   timeRaised: Date
-  timeSeverityChanged: Date
+  [key: string]: any
 }

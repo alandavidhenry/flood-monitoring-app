@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { map } from 'rxjs/operators'
+import { map, Observable } from 'rxjs'
 import { Item } from '../models/flood'
-import { Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class FloodApiService {
-  // API URL
   private url: string = 'http://environment.data.gov.uk/flood-monitoring'
 
   constructor(private http: HttpClient) {}
@@ -37,6 +35,16 @@ export class FloodApiService {
           })
 
         return response
+      })
+    )
+  }
+
+  getFloodWarningDetails(floodAreaID: string): Observable<Item> {
+    console.log('Fetching flood warning details for ID:', floodAreaID)
+    return this.http.get<any>(`${this.url}/id/floods/${floodAreaID}`).pipe(
+      map((response) => {
+        console.log('Raw API response:', response)
+        return response.items as Item
       })
     )
   }

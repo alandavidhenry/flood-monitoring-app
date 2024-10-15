@@ -13,15 +13,15 @@
   >
     <div *ngIf="floodWarning" class="mb-4">
       <p class="mb-2"><strong>Description:</strong> {{ floodWarning.description || 'N/A' }}</p>
-      <p class="mb-2"><strong>County:</strong> {{ floodWarning.floodArea?.county || 'N/A' }}</p>
-      <p class="mb-2"><strong>Severity Level:</strong> {{ floodWarning.severityLevel || 'N/A' }}</p>
+      <p class="mb-2"><strong>County:</strong> {{ floodWarning.floodArea.county || 'N/A' }}</p>
+      <p class="mb-2"><strong>Severity level:</strong> {{ floodWarning.severityLevel || 'N/A' }}</p>
       <p class="mb-2"><strong>Severity:</strong> {{ floodWarning.severity || 'N/A' }}</p>
-      <p class="mb-2"><strong>River or Sea:</strong> {{ floodWarning.floodArea?.riverOrSea || 'N/A' }}</p>
-      <p class="mb-2"><strong>Flood Area Description:</strong> {{ floodWarning.floodArea?.description || 'N/A' }}</p>
+      <p class="mb-2"><strong>River or sea:</strong> {{ floodWarning.floodArea.riverOrSea || 'N/A' }}</p>
+      <p class="mb-2"><strong>Flood area description:</strong> {{ floodWarning.floodArea.description || 'N/A' }}</p>
       <p class="mb-2"><strong>Message:</strong> {{ floodWarning.message || 'N/A' }}</p>
-      <p class="mb-2"><strong>Time Raised:</strong> {{ floodWarning.timeRaised | date:'dd MMM yyyy, h:mm a' || 'N/A' }}</p>
-      <p class="mb-2"><strong>Latitude:</strong> {{ floodWarning.floodArea?.lat | number:'1.4-4' || 'N/A' }}</p>
-      <p class="mb-2"><strong>Longitude:</strong> {{ floodWarning.floodArea?.long | number:'1.4-4' || 'N/A' }}</p>
+      <p class="mb-2"><strong>Date and time raised:</strong> {{ floodWarning.timeRaised | date:'dd MMM yyyy, h:mm a' || 'N/A' }}</p>
+      <p class="mb-2"><strong>Latitude:</strong> {{ floodWarning.floodArea.lat | number:'1.4-4' || 'N/A' }}</p>
+      <p class="mb-2"><strong>Longitude:</strong> {{ floodWarning.floodArea.long | number:'1.4-4' || 'N/A' }}</p>
     </div>
 
   <div *ngIf="!floodWarning" class="text-center">

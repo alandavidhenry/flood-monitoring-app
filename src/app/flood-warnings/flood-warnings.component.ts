@@ -11,9 +11,11 @@ import { Item } from '../models/flood'
 })
 export class FloodWarningsComponent implements OnInit {
   floodWarningData: Item[] = []
+  filteredFloodWarningData: Item[] = []
   private subscription!: Subscription
   sortColumn: string = ''
   sortDirection: 'asc' | 'desc' = 'asc'
+  filterText: string = ''
 
   constructor(
     private floodApiService: FloodApiService,
@@ -24,6 +26,7 @@ export class FloodWarningsComponent implements OnInit {
     this.subscription = this.floodApiService.getFloodWarningToday().subscribe({
       next: (data: any) => {
         this.floodWarningData = data.items
+        this.filteredFloodWarningData = this.floodWarningData
       },
       error: (error) => {
         console.error(error)
@@ -87,5 +90,22 @@ export class FloodWarningsComponent implements OnInit {
   onRowClick(item: Item): void {
     const url = `/flood-warning-details/${item.floodAreaID}`
     this.router.navigateByUrl(url)
+  }
+
+  filterData(): void {
+    if (!this.filterText) {
+      this.filteredFloodWarningData = this.floodWarningData
+    } else {
+      const searchTerm = this.filterText.toLowerCase()
+      this.filteredFloodWarningData = this.floodWarningData.filter(
+        (item) =>
+          item.description.toLowerCase().includes(searchTerm) ||
+          item.floodArea.county.toLowerCase().includes(searchTerm)
+      )
+    }
+  }
+
+  onFilterChange(): void {
+    this.filterData()
   }
 }

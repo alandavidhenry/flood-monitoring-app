@@ -2,17 +2,36 @@
   Flood Warnings
 </h1>
 
-<p class="dark:text-white mb-5">
-  The latest flood warnings are shown below.<br />
-  Click on a table row to view more details.
-</p>
+<div class="flex flex-col md:flex-row justify-between mb-5">
+  <div>
+    <p class="dark:text-white mb-4 md:mb-0">
+      The latest flood warnings are shown below.<br />
+      Click on a table row to view more details.
+    </p>
+  </div>
+  <div>
+    <form class="dark:text-white">
+      <div class="flex flex-row gap-4">
+        <input
+          type="text"
+          name="filter"
+          id="filter"
+          placeholder="Type here to filter results"
+          class="w-80 shadow-md rounded sm:rounded-lg bg-white dark:border-gray-700 text-gray-800"
+          [(ngModel)]="filterText"
+          (input)="onFilterChange()"
+        />
+      </div>
+    </form>
+  </div>
+</div>
 
 <div class="relative overflow-x-auto shadow-md rounded sm:rounded-lg">
   <table
     class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table-fixed"
   >
     <thead
-      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"
     >
       <tr>
         <th scope="col" class="px-6 py-3 w-5/12">
@@ -100,7 +119,7 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let item of floodWarningData"
+        *ngFor="let item of filteredFloodWarningData"
         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
         (click)="onRowClick(item)"
       >
@@ -121,6 +140,10 @@
   </table>
 </div>
 
-<div *ngIf="floodWarningData.length === 0" class="text-center">
+<!-- <div *ngIf="floodWarningData.length === 0" class="text-center">
   <p class="text-xl dark:text-white">Loading data...</p>
+</div> -->
+
+<div class="text-center" *ngIf="filteredFloodWarningData.length === 0">
+  <p class="text-xl dark:text-white">No matching flood warnings found.</p>
 </div>

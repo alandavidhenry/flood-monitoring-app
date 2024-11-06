@@ -87,10 +87,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "flood-monitoring-app:build:production"
+              "buildTarget": "flood-monitoring-app:build:production"
             },
             "development": {
-              "browserTarget": "flood-monitoring-app:build:development"
+              "buildTarget": "flood-monitoring-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,7 +98,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "flood-monitoring-app:build"
+            "buildTarget": "flood-monitoring-app:build"
           }
         },
         "test": {

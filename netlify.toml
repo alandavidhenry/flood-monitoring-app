@@ -1,6 +1,6 @@
 [build]
-  publish = "dist/flood-monitoring-app"
-  command = "ng build --configuration=production"
+  publish = "dist/flood-monitoring-app/browser
+  command = "ng build --configuration production"
 
 [build.environment]
   NODE_VERSION = "20.18.0"
@@ -9,7 +9,6 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  query = {path = ":path"}
   status = 200
 
 [[headers]]

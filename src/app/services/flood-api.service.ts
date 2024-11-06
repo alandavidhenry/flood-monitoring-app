@@ -42,12 +42,10 @@ export class FloodApiService {
   }
 
   getFloodWarningDetails(floodAreaID: string): Observable<Item> {
-    console.log('Fetching flood warning details for ID:', floodAreaID)
     return this.http
       .get<any>(`${this.floodBaseUrl}/id/floods/${floodAreaID}`)
       .pipe(
         map((response) => {
-          console.log('Raw API response:', response)
           return response.items as Item
         })
       )

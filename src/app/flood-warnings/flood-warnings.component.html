@@ -5,7 +5,12 @@
 <div class="flex flex-col md:flex-row justify-between mb-5">
   <div>
     <p class="dark:text-white mb-4 md:mb-0">
-      The latest flood warnings are shown below.<br />
+      The latest flood warnings are shown below. ({{
+        filteredFloodWarningData.length
+      }}
+      active warnings).
+    </p>
+    <p class="dark:text-white mb-4 md:mb-0">
       Click on a table row to view more details.
     </p>
   </div>
@@ -24,6 +29,17 @@
       </div>
     </form>
   </div>
+</div>
+
+<div
+  *ngIf="filteredFloodWarningData.length < 2"
+  class="mb-5 p-4 text-blue-800 bg-blue-100 rounded-lg dark:bg-blue-900 dark:text-blue-300"
+>
+  <p>
+    There is currently only {{ filteredFloodWarningData.length }} active flood
+    warning. This is good news! It means there are very few flood risks at the
+    moment.
+  </p>
 </div>
 
 <div class="relative overflow-x-auto shadow-md rounded sm:rounded-lg">
@@ -139,10 +155,6 @@
     </tbody>
   </table>
 </div>
-
-<!-- <div *ngIf="floodWarningData.length === 0" class="text-center">
-  <p class="text-xl dark:text-white">Loading data...</p>
-</div> -->
 
 <div class="text-center" *ngIf="filteredFloodWarningData.length === 0">
   <p class="text-xl dark:text-white">No matching flood warnings found.</p>

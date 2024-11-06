@@ -7,12 +7,14 @@ import { Item } from '../models/flood'
   providedIn: 'root'
 })
 export class FloodApiService {
-  private url: string = 'https://environment.data.gov.uk/flood-monitoring'
+  private floodBaseUrl: string =
+    'https://environment.data.gov.uk/flood-monitoring'
+  private postcodeBaseUrl = 'https://api.postcodes.io'
 
   constructor(private http: HttpClient) {}
 
   getFloodWarningToday() {
-    return this.http.get(`${this.url}/id/floods`).pipe(
+    return this.http.get(`${this.floodBaseUrl}/id/floods`).pipe(
       map((response: any) => {
         response.items.forEach((item: Item) => {
           item.timeRaised = new Date(item.timeRaised)
@@ -41,15 +43,48 @@ export class FloodApiService {
 
   getFloodWarningDetails(floodAreaID: string): Observable<Item> {
     console.log('Fetching flood warning details for ID:', floodAreaID)
-    return this.http.get<any>(`${this.url}/id/floods/${floodAreaID}`).pipe(
-      map((response) => {
-        console.log('Raw API response:', response)
-        return response.items as Item
+    return this.http
+      .get<any>(`${this.floodBaseUrl}/id/floods/${floodAreaID}`)
+      .pipe(
+        map((response) => {
+          console.log('Raw API response:', response)
+          return response.items as Item
+        })
+      )
+  }
+
+  getStationsSearchRiverName(searchTerm: string): Observable<any> {
+    return this.http.get(
+      `${this.floodBaseUrl}/id/stations?search=${searchTerm}`
+    )
+  }
+
+  getCoordinatesFromPostcode(
+    postcode: string
+  ): Observable<{ lat: number; long: number }> {
+    return this.http.get(`${this.postcodeBaseUrl}/postcodes/${postcode}`).pipe(
+      map((response: any) => {
+        if (response.result) {
+          return {
+            lat: response.result.latitude,
+            long: response.result.longitude
+          }
+        } else {
+          throw new Error('Invalid postcode')
+        }
       })
     )
   }
 
-  getStationsSearchRiverName(searchTerm: string): Observable<any> {
-    return this.http.get(`${this.url}/id/stations?search=${searchTerm}`)
+  getFloodAreas(lat: number, long: number, dist: number): Observable<any> {
+    return this.http
+      .get(`${this.floodBaseUrl}/id/floodAreas`, {
+        params: {
+          lat: lat.toString(),
+          long: long.toString(),
+          dist: dist.toString()
+        }
+      })
+      .pipe(map((response: any) => response.items || []))
   }
 }

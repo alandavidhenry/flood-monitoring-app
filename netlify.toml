@@ -1,5 +1,5 @@
 [build]
-  publish = "dist/flood-monitoring-app/browser
+  publish = "dist/flood-monitoring-app/browser"
   command = "ng build --configuration production"
 
 [build.environment]
